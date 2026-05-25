@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap');
+
+.intro-page {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.intro-page__content {
+  width: min(42rem, 100%);
+  text-align: center;
+}
+
+.intro-line {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.65;
+  text-shadow:
+    0 0 12px rgba(255, 255, 255, 0.35),
+    0 0 28px rgba(255, 255, 255, 0.15);
+}
+
+.intro-line--quote {
+  font-size: clamp(1.1rem, 2.6vw, 1.45rem);
+  margin-top: 0.5rem;
+}
+
+.intro-line__cursor {
+  display: inline-block;
+  margin-left: 2px;
+  opacity: 0.7;
+  animation: intro-blink 1s step-end infinite;
+}
+
+@keyframes intro-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.intro-blank-slot {
+  display: inline-block;
+  vertical-align: baseline;
+  width: 0;
+  height: 1.05em;
+  margin: 0 0.14em;
+  padding: 0;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  opacity: 0;
+  transition:
+    width 0.12s ease,
+    opacity 0.12s ease,
+    border-color 0.5s ease,
+    box-shadow 0.6s ease;
+}
+
+.intro-blank-slot--visible {
+  width: 80px;
+  opacity: 1;
+  border-bottom-color: rgba(255, 255, 255, 0.92);
+}
+
+button.intro-blank-slot {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+button.intro-blank-slot:hover {
+  box-shadow:
+    0 2px 18px rgba(255, 255, 255, 0.55),
+    0 0 28px rgba(255, 255, 255, 0.3);
+}
+
+.intro-blank-slot--revealed {
+  border-bottom-color: rgba(255, 255, 255, 1);
+  box-shadow:
+    0 2px 14px rgba(255, 255, 255, 0.4),
+    0 0 22px rgba(255, 255, 255, 0.22);
+  animation: intro-blank-slot-reveal 0.7s ease forwards;
+}
+
+.intro-blank-slot--pulse {
+  animation:
+    intro-blank-slot-reveal 0.7s ease forwards,
+    intro-blank-slot-pulse 2s ease-in-out 0.7s infinite;
+}
+
+@keyframes intro-blank-slot-reveal {
+  from {
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
+  }
+
+  to {
+    box-shadow:
+      0 2px 14px rgba(255, 255, 255, 0.4),
+      0 0 22px rgba(255, 255, 255, 0.22);
+  }
+}
+
+@keyframes intro-blank-slot-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 2px 12px rgba(255, 255, 255, 0.35),
+      0 0 18px rgba(255, 255, 255, 0.18);
+    border-bottom-color: rgba(255, 255, 255, 0.88);
+  }
+
+  50% {
+    box-shadow:
+      0 2px 18px rgba(255, 255, 255, 0.55),
+      0 0 28px rgba(255, 255, 255, 0.32);
+    border-bottom-color: rgba(255, 255, 255, 1);
+  }
+}
+
+.intro-quote-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.intro-word--star {
+  display: inline;
+  text-shadow:
+    0 0 16px rgba(255, 255, 255, 0.95),
+    0 0 40px rgba(255, 255, 255, 0.65);
+  animation: intro-star-pulse 0.5s ease-out forwards;
+}
+
+@keyframes intro-star-pulse {
+  0% {
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, 0.5),
+      0 0 16px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    text-shadow:
+      0 0 24px rgba(255, 255, 255, 1),
+      0 0 48px rgba(255, 255, 255, 0.8),
+      0 0 72px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    text-shadow:
+      0 0 14px rgba(255, 255, 255, 0.7),
+      0 0 28px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.intro-challenge {
+  margin-top: 2rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+  pointer-events: none;
+}
+
+.intro-challenge--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.intro-line--quote-author {
+  margin: -0.35rem 0 1.5rem;
+  font-size: 0.78rem;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.65);
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.intro-line--quote-author-visible {
+  opacity: 1;
+}
+
+.intro-challenge__instructions {
+  width: min(32rem, 100%);
+  margin: 0 auto 1.25rem;
+  text-align: center;
+}
+
+.intro-challenge__instruction-line {
+  margin: 0 0 0.55rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+}
+
+.intro-challenge__instruction-line:last-child {
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.intro-challenge__editor {
+  width: 300px;
+  max-width: 100%;
+  margin: 1.25rem auto 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.intro-challenge__submit {
+  margin-top: 1rem;
+  padding: 0.4rem 1.1rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.9);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.intro-challenge__submit:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+.intro-challenge__error {
+  margin: 0.65rem 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 200, 200, 0.75);
+  text-shadow: 0 0 8px rgba(255, 120, 120, 0.2);
+}
+
+.intro-page--hello-only {
+  background: #000;
+}
+
+.intro-line--hello {
+  transition: opacity 1.2s ease;
+}
+
+.intro-line--hello-fade-out {
+  opacity: 0;
+}
+
+.intro-page--fade-out {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}

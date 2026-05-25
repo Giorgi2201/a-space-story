@@ -1,0 +1,8 @@
+.starfield--fade-in {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.starfield--fade-in.starfield--visible {
+  opacity: 1;
+}
