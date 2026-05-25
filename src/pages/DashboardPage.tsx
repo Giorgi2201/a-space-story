@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import StarField from '../components/StarField'
 import { getFirstName } from '../services/authService'
 import { hasSeenIntro } from '../utils/introStorage'
-import { hasLaikaMissionStarted } from '../utils/missionStorage'
+import { hasLaikaMissionStarted, markLaikaMissionStarted } from '../utils/missionStorage'
 import '../styles/dashboard-page.css'
 
 const LAIKA_IMAGE_URL =
@@ -30,9 +30,10 @@ function getInitials(firstName: string | null): string {
 
 type MissionBriefingModalProps = {
   onClose: () => void
+  onLaunch: () => void
 }
 
-function MissionBriefingModal({ onClose }: MissionBriefingModalProps) {
+function MissionBriefingModal({ onClose, onLaunch }: MissionBriefingModalProps) {
   const hasStarted = hasLaikaMissionStarted()
 
   return (
@@ -68,7 +69,7 @@ function MissionBriefingModal({ onClose }: MissionBriefingModalProps) {
           <li>Loops</li>
         </ul>
         <p className="dashboard-modal__time">Estimated time: 20-30 minutes</p>
-        <button type="button" className="dashboard-modal__launch">
+        <button type="button" className="dashboard-modal__launch" onClick={onLaunch}>
           {hasStarted ? 'Continue Mission' : 'Launch Mission'}
         </button>
       </div>
@@ -159,7 +160,16 @@ function DashboardPage() {
         </main>
       </div>
 
-      {briefingOpen ? <MissionBriefingModal onClose={() => setBriefingOpen(false)} /> : null}
+      {briefingOpen ? (
+        <MissionBriefingModal
+          onClose={() => setBriefingOpen(false)}
+          onLaunch={() => {
+            markLaikaMissionStarted()
+            setBriefingOpen(false)
+            navigate('/mission/laika')
+          }}
+        />
+      ) : null}
     </div>
   )
 }

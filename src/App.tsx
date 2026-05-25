@@ -4,6 +4,7 @@ import { GuestRoute, ProtectedRoute } from './components/AuthRoute'
 import AuthPage from './pages/AuthPage'
 import DashboardPage from './pages/DashboardPage'
 import IntroPage from './pages/IntroPage'
+import LaikaMissionPage from './pages/LaikaMissionPage'
 
 function App() {
   return (
@@ -39,6 +40,14 @@ function App() {
           element={
             <ProtectedRoute>
               <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mission/laika"
+          element={
+            <ProtectedRoute>
+              <LaikaMissionPage />
             </ProtectedRoute>
           }
         />

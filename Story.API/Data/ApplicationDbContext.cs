@@ -10,4 +10,18 @@ public sealed class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         : base(options)
     {
     }
+
+    public DbSet<MissionProgress> MissionProgresses => Set<MissionProgress>();
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
+        builder.Entity<MissionProgress>(entity =>
+        {
+            entity.HasIndex(progress => new { progress.UserId, progress.MissionKey }).IsUnique();
+            entity.Property(progress => progress.MissionKey).HasMaxLength(64);
+            entity.Property(progress => progress.Phase).HasMaxLength(32);
+        });
+    }
 }
