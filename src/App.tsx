@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { GuestRoute, ProtectedRoute } from './components/AuthRoute'
 import AuthPage from './pages/AuthPage'
-import HomePage from './pages/HomePage'
+import DashboardPage from './pages/DashboardPage'
 import IntroPage from './pages/IntroPage'
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
           path="/home"
           element={
             <ProtectedRoute>
-              <HomePage />
+              <DashboardPage />
             </ProtectedRoute>
           }
         />
