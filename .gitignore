@@ -1,5 +1,21 @@
+# --- Environment & secrets ---
+.env
+.env.*
+!.env.example
+
+# Local API config overrides (keep appsettings.json in repo if needed)
+**/appsettings.local.json
+**/appsettings.*.local.json
+**/secrets.json
+
+# --- Node / Vite / React ---
+node_modules/
+dist/
+dist-ssr/
+*.local
+
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,18 +23,62 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Test & tooling
+coverage/
+*.tsbuildinfo
 
-# Editor directories and files
+# --- .NET / ASP.NET Core ---
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+publish/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.user
+*.userosscache
+*.suo
+*.userprefs
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.nuget.props
+*.nuget.targets
+
+# Visual Studio / Rider / VS Code
+.vs/
 .vscode/*
 !.vscode/extensions.json
-.idea
+!.vscode/settings.json
+.idea/
+*.DotSettings.user
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.sln.docstates
+
+# Keep solution files; ignore only VS cache
+*.rsuser
+
+# --- OS ---
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# --- Misc ---
+*.swp
+*~
+.cache/
